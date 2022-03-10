@@ -12,7 +12,7 @@ locals {
   }
 }
 
-module "backend-s3-cicd" {
+module "backend_s3_cicd" {
   source = "github.com/byu-oit/terraform-aws-backend-s3-cicd?ref=v1.0.0"
   name   = local.name
   tags   = local.tags
