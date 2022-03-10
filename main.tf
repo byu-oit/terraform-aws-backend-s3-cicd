@@ -15,7 +15,7 @@ locals {
   default_bucket_name = "terraform-state-storage-${local.account_id}"
   default_table_name  = "terraform-state-lock-${local.account_id}"
   bucket_name         = var.bucket_name == "" ? local.default_bucket_name : var.bucket_name
-  table_name          = var.table_name == "" ? local.default_table_name : var.table_name
+  table_name          = var.dynamodb_table_name == "" ? local.default_table_name : var.dynamodb_table_name
 
   # these locals are actually used in the created resources
   bucket_arn = "arn:aws:s3:::${local.bucket_name}"
@@ -43,7 +43,7 @@ resource "aws_iam_policy" "cicd_policy" {
                 "dynamodb:GetItem",
                 "dynamodb:DeleteItem"
             ],
-            "Resource": "${local.dynamodb_table_arn}"
+            "Resource": "${local.table_arn}"
         },
         {
             "Effect": "Allow",
