@@ -26,4 +26,4 @@ module "backend-s3-cicd" {
 ## Outputs
 | Name | Type | Description |
 | --- | --- | --- |
-| cicd_policy | [IAM Policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_policy) | Permissions needed to deploy a project that uses a `backend "s3" {}` |
+| cicd_policy | [IAM Policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_policy) | Permissions needed to deploy a project that uses `backend "s3" {}` |
