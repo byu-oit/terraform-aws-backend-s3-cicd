@@ -1,7 +1,7 @@
 ![Latest GitHub Release](https://img.shields.io/github/v/release/byu-oit/terraform-aws-backend-s3-cicd?sort=semver)
 
 # Terraform AWS Backend S3 CI/CD
-Creates the IAM policies needed to deploy/use [Terraform AWS Backend S3](https://github.com/byu-oit/terraform-aws-backend-s3)
+Creates the IAM policies needed to deploy projects that use `backend "s3" {}`. To create these backends, see [Terraform AWS Backend S3](https://github.com/byu-oit/terraform-aws-backend-s3).
 
 #### [New to Terraform Modules at BYU?](https://devops.byu.edu/terraform/index.html)
 
@@ -18,11 +18,12 @@ module "backend-s3-cicd" {
 ## Inputs
 | Name | Type  | Description | Default |
 | --- | --- | --- | --- |
-| bucket_name | terraform-state-storage-<account_number> | S3 bucket name for state file storage |
-| dynamodb_table_name | terraform-state-lock-<account_number> | DynamoDB table name for state file locking |
+| name | string | Used to prefix created resource names | |
+| tags | map(string) | A map of AWS Tags to attach to each resource created | {} |
+| bucket_name | string | S3 bucket name for state file storage | terraform-state-storage-<account_number> |
+| dynamodb_table_name | string | DynamoDB table name for state file locking | terraform-state-lock-<account_number> |
 
 ## Outputs
 | Name | Type | Description |
 | --- | --- | --- |
-| creation_policy | [IAM Policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_policy) | Permissions needed to deploy [Terraform AWS Backend S3](https://github.com/byu-oit/terraform-aws-backend-s3) |
-| use_policy | [IAM Policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_policy) | Permissions needed to deploy a project that uses a `backend "s3" {}` |
+| cicd_policy | [IAM Policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_policy) | Permissions needed to deploy a project that uses a `backend "s3" {}` |

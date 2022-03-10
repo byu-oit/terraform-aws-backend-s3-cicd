@@ -9,12 +9,9 @@ provider "aws" {
 
 module "ci_test" {
   source = "../../"
+  name   = "ci_test"
 }
 
-output "creation_policy_arn" {
-  value = module.ci_test.creation_policy.arn
-}
-
-output "use_policy_arn" {
-  value = module.ci_test.use_policy.arn
+output "cicd_policy_arn" {
+  value = module.ci_test.cicd_policy.arn
 }

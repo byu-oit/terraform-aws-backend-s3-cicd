@@ -15,6 +15,8 @@ locals {
 
 module "backend-s3-cicd" {
   source = "github.com/byu-oit/terraform-aws-backend-s3-cicd?ref=v1.0.0"
+  name   = local.name
+  tags   = local.tags
 }
 
 module "gha_role" {
@@ -28,5 +30,5 @@ module "gha_role" {
   oidc_fully_qualified_audiences = ["sts.amazonaws.com"]
   oidc_subjects_with_wildcards   = ["repo:byu-oit/${local.name}:*"]
   number_of_role_policy_arns     = 1
-  role_policy_arns               = [module.backend-s3-cicd.use_policy.arn]
+  role_policy_arns               = [module.backend-s3-cicd.cicd_policy.arn]
 }
